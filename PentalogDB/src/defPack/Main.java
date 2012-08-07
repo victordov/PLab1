@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import md.victordov.lab.dao.CursDAO;
+import md.victordov.lab.dao.GenericDAO;
 import md.victordov.lab.dao.ProfesorDAO;
 import md.victordov.lab.dao.StudentDAO;
 import md.victordov.lab.dao.UnivDAO;
@@ -15,15 +16,10 @@ public class Main {
 	 * @param args
 	 */
 	public static Scanner sc = new Scanner(System.in);
+	public static GenericDAO gDAO = null;
 
 	public void Menu() {
-		System.out.println("Bine ati Venit");
-		System.out.println("Alege Meniul");
-		System.out.println("1: Student");
-		System.out.println("2: Profesor");
-		System.out.println("3: Universitate");
-		System.out.println("4: Curs	");
-		System.out.println("5: Iesire");
+		System.out.println(MenuText.outMenuPrincipal);
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
@@ -47,13 +43,9 @@ public class Main {
 	}
 
 	private void Student_Menu() {
-		System.out.println("1:\tCreate Student");
-		System.out.println("2:\tRead   Student");
-		System.out.println("3:\tUpdate Student");
-		System.out.println("4:\tDelete Student");
-		System.out.println("5:\tPrint All Students");
-		System.out.println("6:\tMeniul Principal");
-		StudentDAO stdao = new StudentDAO();
+
+		System.out.println(MenuText.outStudMenu);
+		gDAO = new StudentDAO();
 		Student stud = new Student();
 		ArrayList<Student> arrayStud = new ArrayList<Student>();
 		String format = "|%1$-10d|%2$-15s|%3$-15s|%4$-10s|%5$-25s|%6$-12s|\n";
@@ -62,33 +54,33 @@ public class Main {
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			stud.setS_id(Long.parseLong(sc.nextLine()));
 
-			System.out.println("Introdu Numele: ");
+			System.out.println(MenuText.InNume);
 			stud.setNume(sc.nextLine());
 
-			System.out.println("Introdu Prenumele: ");
+			System.out.println(MenuText.InPrenume);
 			stud.setPrenume(sc.nextLine());
 
-			System.out.println("Grupa:");
+			System.out.println(MenuText.InGrupa);
 			stud.setGrupa(sc.nextLine());
 
-			System.out.println("Email: ");
+			System.out.println(MenuText.InEmail);
 			stud.setEmail(sc.nextLine());
 
-			System.out.println("Telefon: ");
+			System.out.println(MenuText.InTelefon);
 			stud.setTelFix(sc.nextLine());
 
-			System.out.println(stdao.create(stud) ? "A fost Creat Studetul "
-					+ stud.getS_id() : "Nu a fost schimbat nimic");
+			System.out.println(gDAO.create(stud) ? MenuText.outSuccess
+					+ stud.getS_id() : MenuText.outEsuare);
 			Student_Menu();
 			break;
 		case 2:
 			System.out
 					.println("Introdu ID-ul studentului ce urmeaza sa fie afisat");
 			id = Long.parseLong(sc.nextLine());
-			stud = stdao.retrieve(id);
+			stud = (Student) gDAO.retrieve(id);
 			System.out.format(format2, "ID Stud", "Nume", "Prenume", "Grupa",
 					"Email", "TelFix");
 			System.out.format(format, stud.getS_id(), stud.getNume(),
@@ -97,39 +89,37 @@ public class Main {
 			Student_Menu();
 			break;
 		case 3:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			stud.setS_id(Integer.parseInt(sc.nextLine()));
 
-			System.out.println("Introdu Numele: ");
+			System.out.println(MenuText.InNume);
 			stud.setNume(sc.nextLine());
 
-			System.out.println("Introdu Prenumele: ");
+			System.out.println(MenuText.InPrenume);
 			stud.setPrenume(sc.nextLine());
 
-			System.out.println("Grupa:");
+			System.out.println(MenuText.InGrupa);
 			stud.setGrupa(sc.nextLine());
 
-			System.out.println("Email: ");
+			System.out.println(MenuText.InEmail);
 			stud.setEmail(sc.nextLine());
 
-			System.out.println("Telefon: ");
+			System.out.println(MenuText.InTelefon);
 			stud.setTelFix(sc.nextLine());
 
-			// if(stdao.update(stud));
-			System.out
-					.println(stdao.update(stud) ? "Informatia studentului a fost reinnoita"
-							+ stud.getS_id()
-							: "Nu a fost schimbat nimic");
+			// if(gDAO.update(stud));
+			System.out.println(gDAO.update(stud) ? MenuText.outSuccess
+					+ stud.getS_id() : MenuText.outEsuare);
 			Student_Menu();
 			break;
 		case 4:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			id = Long.parseLong(sc.nextLine());
-			stdao.delete(id);
+			gDAO.delete(id);
 			Student_Menu();
 			break;
 		case 5:
-			arrayStud.addAll(stdao.retrieve());
+			arrayStud.addAll(gDAO.retrieve());
 			Iterator<Student> it = arrayStud.iterator();
 			System.out.format(format2, "ID Stud", "Nume", "Prenume", "Grupa",
 					"Email", "TelFix");
@@ -153,13 +143,9 @@ public class Main {
 	}
 
 	private void Profesor_Menu() {
-		System.out.println("1:\tCreate Profesor");
-		System.out.println("2:\tRead   Profesor");
-		System.out.println("3:\tUpdate Profesor");
-		System.out.println("4:\tDelete Profesor");
-		System.out.println("5:\tPrint All Profesors");
-		System.out.println("6:\tMeniul Principal");
-		ProfesorDAO prfDAO = new ProfesorDAO();
+		System.out.println(MenuText.outProfMenu);
+
+		gDAO = new ProfesorDAO();
 		Profesor prof = new Profesor();
 		ArrayList<Profesor> arrayProf = new ArrayList<Profesor>();
 		String format = "|%1$-10d|%2$-15s|%3$-15s|%4$-25s|\n";
@@ -168,59 +154,57 @@ public class Main {
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			prof.setP_id(Long.parseLong(sc.nextLine()));
 
-			System.out.println("Introdu Numele: ");
+			System.out.println(MenuText.InNume);
 			prof.setNume(sc.nextLine());
 
-			System.out.println("Introdu Prenumele: ");
+			System.out.println(MenuText.InPrenume);
 			prof.setPrenume(sc.nextLine());
 
-			System.out.println("Adresa:");
+			System.out.println(MenuText.InAdresa);
 			prof.setAdresa(sc.nextLine());
 
-			System.out.println(prfDAO.create(prof) ? "A fost Creat Profesorul "
-					+ prof.getP_id() : "Nu a fost schimbat nimic");
+			System.out.println(gDAO.create(prof) ? MenuText.outSuccess
+					+ prof.getP_id() : MenuText.outEsuare);
 			Profesor_Menu();
 			break;
 		case 2:
 			System.out
 					.println("Introdu ID-ul profesorului ce urmeaza sa fie afisat");
 			id = Long.parseLong(sc.nextLine());
-			prof = prfDAO.retrieve(id);
+			prof = (Profesor) gDAO.retrieve(id);
 			System.out.format(format2, "ID Prof", "Nume", "Prenume", "Adresa");
 			System.out.format(format, prof.getP_id(), prof.getNume(),
 					prof.getPrenume(), prof.getAdresa());
 			Profesor_Menu();
 			break;
 		case 3:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			prof.setP_id(Integer.parseInt(sc.nextLine()));
 
-			System.out.println("Introdu Numele: ");
+			System.out.println(MenuText.InNume);
 			prof.setNume(sc.nextLine());
 
-			System.out.println("Introdu Prenumele: ");
+			System.out.println(MenuText.InPrenume);
 			prof.setPrenume(sc.nextLine());
 
-			System.out.println("Adresa:");
+			System.out.println(MenuText.InAdresa);
 			prof.setAdresa(sc.nextLine());
 
-			System.out
-					.println(prfDAO.update(prof) ? "A fost reinnoit Profesorul "
-							+ prof.getP_id()
-							: "Nu a fost schimbat nimic");
+			System.out.println(gDAO.update(prof) ? MenuText.outSuccess
+					+ prof.getP_id() : MenuText.outEsuare);
 			Profesor_Menu();
 			break;
 		case 4:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			id = Long.parseLong(sc.nextLine());
-			prfDAO.delete(id);
+			gDAO.delete(id);
 			Profesor_Menu();
 			break;
 		case 5:
-			arrayProf.addAll(prfDAO.retrieve());
+			arrayProf.addAll(gDAO.retrieve());
 			Iterator<Profesor> it = arrayProf.iterator();
 			System.out.format(format2, "ID Prof", "Nume", "Prenume", "Adresa");
 			while (it.hasNext()) {
@@ -241,13 +225,8 @@ public class Main {
 	}
 
 	private void Universitate_Menu() {
-		System.out.println("1:\tCreate Universitate");
-		System.out.println("2:\tRead   Universitate");
-		System.out.println("3:\tUpdate Universitate");
-		System.out.println("4:\tDelete Universitate");
-		System.out.println("5:\tPrint Toate Universitatile");
-		System.out.println("6:\tMeniul Principal");
-		UnivDAO univDAO = new UnivDAO();
+		System.out.println(MenuText.outUnivMenu);
+		gDAO = new UnivDAO();
 		Universitate univ = new Universitate();
 		ArrayList<Universitate> arrayUniver = new ArrayList<Universitate>();
 		String format = "|%1$-10d|%2$-19s|%3$-27s|%4$-15s\n";
@@ -256,29 +235,26 @@ public class Main {
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			univ.setU_id(Long.parseLong(sc.nextLine()));
 
 			System.out.println("Introdu Denumirea Universitatii: ");
 			univ.setNume_univer(sc.nextLine());
 
-			System.out.println("Introdu Adresa: ");
+			System.out.println(MenuText.InAdresa);
 			univ.setAdresa(sc.nextLine());
 
-			System.out.println("Introdu Telefonul:");
+			System.out.println(MenuText.InTelefon);
 			univ.setTelefon(sc.nextLine());
 
-			System.out
-					.println(univDAO.create(univ) ? "A fost Creat Universitate "
-							+ univ.getU_id()
-							: "Nu a fost schimbat nimic");
+			System.out.println(gDAO.create(univ) ? MenuText.outSuccess
+					+ univ.getU_id() : MenuText.outEsuare);
 			Universitate_Menu();
 			break;
 		case 2:
-			System.out
-					.println("Introdu ID-ul universitatii ce urmeaza sa fie afisata");
+			System.out.println(MenuText.InID);
 			id = Long.parseLong(sc.nextLine());
-			univ = univDAO.retrieve(id);
+			univ = (Universitate) gDAO.retrieve(id);
 			System.out.format(format2, "ID Univer", "Nume Universitate",
 					"Adresa", "Telefon");
 			System.out.format(format, univ.getU_id(), univ.getNume_univer(),
@@ -286,32 +262,30 @@ public class Main {
 			Universitate_Menu();
 			break;
 		case 3:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			univ.setU_id(Long.parseLong(sc.nextLine()));
 
 			System.out.println("Introdu Denumirea: ");
 			univ.setNume_univer(sc.nextLine());
 
-			System.out.println("Introdu Adresa: ");
+			System.out.println(MenuText.InAdresa);
 			univ.setAdresa(sc.nextLine());
 
-			System.out.println("Telefonul:");
+			System.out.println(MenuText.InTelefon);
 			univ.setTelefon(sc.nextLine());
 
-			System.out
-					.println(univDAO.update(univ) ? "A fost reinnoita Universitatea "
-							+ univ.getU_id()
-							: "Nu a fost schimbat nimic");
+			System.out.println(gDAO.update(univ) ? MenuText.outSuccess
+					+ univ.getU_id() : MenuText.outEsuare);
 			Universitate_Menu();
 			break;
 		case 4:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			id = Long.parseLong(sc.nextLine());
-			univDAO.delete(id);
+			gDAO.delete(id);
 			Universitate_Menu();
 			break;
 		case 5:
-			arrayUniver.addAll(univDAO.retrieve());
+			arrayUniver.addAll(gDAO.retrieve());
 			Iterator<Universitate> it = arrayUniver.iterator();
 			System.out.format(format2, "ID Univer", "Nume Universitate",
 					"Adresa", "Telefon");
@@ -333,13 +307,8 @@ public class Main {
 	}
 
 	private void Curs_Menu() {
-		System.out.println("1:\tCreate Curs");
-		System.out.println("2:\tRead   Curs");
-		System.out.println("3:\tUpdate Curs");
-		System.out.println("4:\tDelete Curs");
-		System.out.println("5:\tPrint Toate Cursurile");
-		System.out.println("6:\tMeniul Principal");
-		CursDAO cursDAO = new CursDAO();
+		System.out.println(MenuText.outCursMenu);
+		gDAO = new CursDAO();
 		Curs curs = new Curs();
 		ArrayList<Curs> arrayCurs = new ArrayList<Curs>();
 		String format = "|%1$-10d|%2$-20s|%3$-15d|%4$-12d|\n";
@@ -348,7 +317,7 @@ public class Main {
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			curs.setC_id(Long.parseLong(sc.nextLine()));
 
 			System.out.println("Introdu Denumirea: ");
@@ -360,14 +329,14 @@ public class Main {
 			System.out.println("Introdu Id-ul Profesorului:");
 			curs.setP_id(Long.parseLong(sc.nextLine()));
 
-			System.out.println(cursDAO.create(curs) ? "A fost creat Cursul "
-					+ curs.getU_id() : "Nu a fost schimbat nimic");
+			System.out.println(gDAO.create(curs) ? MenuText.outSuccess
+					+ curs.getU_id() : MenuText.outEsuare);
 			Curs_Menu();
 			break;
 		case 2:
 			System.out.println("Introdu ID-ul cursului");
 			id = Long.parseLong(sc.nextLine());
-			curs = cursDAO.retrieve(id);
+			curs = (Curs) gDAO.retrieve(id);
 			System.out.format(format2, "ID Curs", "Nume Curs",
 					"ID Universitate", "ID Profesor");
 			System.out.format(format, curs.getC_id(), curs.getNume_curs(),
@@ -375,7 +344,7 @@ public class Main {
 			Curs_Menu();
 			break;
 		case 3:
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			curs.setU_id(Integer.parseInt(sc.nextLine()));
 
 			System.out.println("Introdu Denumirea: ");
@@ -387,19 +356,19 @@ public class Main {
 			System.out.println("Introdu Id-ul Profesorului:");
 			curs.setP_id(Long.parseLong(sc.nextLine()));
 
-			System.out.println(cursDAO.update(curs) ? "A fost reinnoit Cursul "
-					+ curs.getU_id() : "Nu a fost schimbat nimic");
+			System.out.println(gDAO.update(curs) ? MenuText.outSuccess
+					+ curs.getU_id() : MenuText.outEsuare);
 			Curs_Menu();
 			break;
 		case 4:
 
-			System.out.println("Introdu ID-ul: ");
+			System.out.println(MenuText.InID);
 			id = Long.parseLong(sc.nextLine());
-			cursDAO.delete(id);
+			gDAO.delete(id);
 			Curs_Menu();
 			break;
 		case 5:
-			arrayCurs.addAll(cursDAO.retrieve());
+			arrayCurs.addAll(gDAO.retrieve());
 			Iterator<Curs> it = arrayCurs.iterator();
 			System.out.format(format2, "ID Curs", "Nume Curs",
 					"ID Universitate", "ID Profesor");

@@ -2,7 +2,7 @@ package md.victordov.lab.dao;
 
 import java.util.Collection;
 
-interface GenericDAO<T> {
+public interface GenericDAO<T> {
 
 	Collection<T> retrieve();
 
