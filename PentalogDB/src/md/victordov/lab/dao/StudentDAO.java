@@ -8,8 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import defPack.ConnectionFactory;
-import defPack.Student;
+import md.victordov.lab.connection.ConnectionFactory;
+import md.victordov.lab.vo.Student;
+
 
 public class StudentDAO implements Serializable, GenericDAO<Student> {
 

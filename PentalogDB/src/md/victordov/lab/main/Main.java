@@ -1,4 +1,4 @@
-package defPack;
+package md.victordov.lab.main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,6 +9,10 @@ import md.victordov.lab.dao.GenericDAO;
 import md.victordov.lab.dao.ProfesorDAO;
 import md.victordov.lab.dao.StudentDAO;
 import md.victordov.lab.dao.UnivDAO;
+import md.victordov.lab.vo.Curs;
+import md.victordov.lab.vo.Profesor;
+import md.victordov.lab.vo.Student;
+import md.victordov.lab.vo.Universitate;
 
 public class Main {
 
@@ -54,22 +58,22 @@ public class Main {
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			stud.setS_id(Long.parseLong(sc.nextLine()));
 
-			System.out.println(MenuText.InNume);
+			System.out.println(MenuText.inNume);
 			stud.setNume(sc.nextLine());
 
-			System.out.println(MenuText.InPrenume);
+			System.out.println(MenuText.inPrenume);
 			stud.setPrenume(sc.nextLine());
 
-			System.out.println(MenuText.InGrupa);
+			System.out.println(MenuText.inGrupa);
 			stud.setGrupa(sc.nextLine());
 
-			System.out.println(MenuText.InEmail);
+			System.out.println(MenuText.inEmail);
 			stud.setEmail(sc.nextLine());
 
-			System.out.println(MenuText.InTelefon);
+			System.out.println(MenuText.inTelefon);
 			stud.setTelFix(sc.nextLine());
 
 			System.out.println(gDAO.create(stud) ? MenuText.outSuccess
@@ -89,22 +93,22 @@ public class Main {
 			Student_Menu();
 			break;
 		case 3:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			stud.setS_id(Integer.parseInt(sc.nextLine()));
 
-			System.out.println(MenuText.InNume);
+			System.out.println(MenuText.inNume);
 			stud.setNume(sc.nextLine());
 
-			System.out.println(MenuText.InPrenume);
+			System.out.println(MenuText.inPrenume);
 			stud.setPrenume(sc.nextLine());
 
-			System.out.println(MenuText.InGrupa);
+			System.out.println(MenuText.inGrupa);
 			stud.setGrupa(sc.nextLine());
 
-			System.out.println(MenuText.InEmail);
+			System.out.println(MenuText.inEmail);
 			stud.setEmail(sc.nextLine());
 
-			System.out.println(MenuText.InTelefon);
+			System.out.println(MenuText.inTelefon);
 			stud.setTelFix(sc.nextLine());
 
 			// if(gDAO.update(stud));
@@ -113,7 +117,7 @@ public class Main {
 			Student_Menu();
 			break;
 		case 4:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			id = Long.parseLong(sc.nextLine());
 			gDAO.delete(id);
 			Student_Menu();
@@ -154,16 +158,16 @@ public class Main {
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			prof.setP_id(Long.parseLong(sc.nextLine()));
 
-			System.out.println(MenuText.InNume);
+			System.out.println(MenuText.inNume);
 			prof.setNume(sc.nextLine());
 
-			System.out.println(MenuText.InPrenume);
+			System.out.println(MenuText.inPrenume);
 			prof.setPrenume(sc.nextLine());
 
-			System.out.println(MenuText.InAdresa);
+			System.out.println(MenuText.inAdresa);
 			prof.setAdresa(sc.nextLine());
 
 			System.out.println(gDAO.create(prof) ? MenuText.outSuccess
@@ -181,16 +185,16 @@ public class Main {
 			Profesor_Menu();
 			break;
 		case 3:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			prof.setP_id(Integer.parseInt(sc.nextLine()));
 
-			System.out.println(MenuText.InNume);
+			System.out.println(MenuText.inNume);
 			prof.setNume(sc.nextLine());
 
-			System.out.println(MenuText.InPrenume);
+			System.out.println(MenuText.inPrenume);
 			prof.setPrenume(sc.nextLine());
 
-			System.out.println(MenuText.InAdresa);
+			System.out.println(MenuText.inAdresa);
 			prof.setAdresa(sc.nextLine());
 
 			System.out.println(gDAO.update(prof) ? MenuText.outSuccess
@@ -198,7 +202,7 @@ public class Main {
 			Profesor_Menu();
 			break;
 		case 4:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			id = Long.parseLong(sc.nextLine());
 			gDAO.delete(id);
 			Profesor_Menu();
@@ -235,16 +239,16 @@ public class Main {
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			univ.setU_id(Long.parseLong(sc.nextLine()));
 
 			System.out.println("Introdu Denumirea Universitatii: ");
 			univ.setNume_univer(sc.nextLine());
 
-			System.out.println(MenuText.InAdresa);
+			System.out.println(MenuText.inAdresa);
 			univ.setAdresa(sc.nextLine());
 
-			System.out.println(MenuText.InTelefon);
+			System.out.println(MenuText.inTelefon);
 			univ.setTelefon(sc.nextLine());
 
 			System.out.println(gDAO.create(univ) ? MenuText.outSuccess
@@ -252,7 +256,7 @@ public class Main {
 			Universitate_Menu();
 			break;
 		case 2:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			id = Long.parseLong(sc.nextLine());
 			univ = (Universitate) gDAO.retrieve(id);
 			System.out.format(format2, "ID Univer", "Nume Universitate",
@@ -262,16 +266,16 @@ public class Main {
 			Universitate_Menu();
 			break;
 		case 3:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			univ.setU_id(Long.parseLong(sc.nextLine()));
 
 			System.out.println("Introdu Denumirea: ");
 			univ.setNume_univer(sc.nextLine());
 
-			System.out.println(MenuText.InAdresa);
+			System.out.println(MenuText.inAdresa);
 			univ.setAdresa(sc.nextLine());
 
-			System.out.println(MenuText.InTelefon);
+			System.out.println(MenuText.inTelefon);
 			univ.setTelefon(sc.nextLine());
 
 			System.out.println(gDAO.update(univ) ? MenuText.outSuccess
@@ -279,7 +283,7 @@ public class Main {
 			Universitate_Menu();
 			break;
 		case 4:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			id = Long.parseLong(sc.nextLine());
 			gDAO.delete(id);
 			Universitate_Menu();
@@ -317,7 +321,7 @@ public class Main {
 		int select = Integer.parseInt(sc.nextLine());
 		switch (select) {
 		case 1:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			curs.setC_id(Long.parseLong(sc.nextLine()));
 
 			System.out.println("Introdu Denumirea: ");
@@ -344,7 +348,7 @@ public class Main {
 			Curs_Menu();
 			break;
 		case 3:
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			curs.setU_id(Integer.parseInt(sc.nextLine()));
 
 			System.out.println("Introdu Denumirea: ");
@@ -361,8 +365,7 @@ public class Main {
 			Curs_Menu();
 			break;
 		case 4:
-
-			System.out.println(MenuText.InID);
+			System.out.println(MenuText.inID);
 			id = Long.parseLong(sc.nextLine());
 			gDAO.delete(id);
 			Curs_Menu();

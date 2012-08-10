@@ -1,4 +1,4 @@
-package defPack;
+package md.victordov.lab.vo;
 
 public class Profesor {
 

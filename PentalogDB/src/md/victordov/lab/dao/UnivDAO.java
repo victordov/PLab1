@@ -8,8 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import defPack.ConnectionFactory;
-import defPack.Universitate;
+import md.victordov.lab.connection.ConnectionFactory;
+import md.victordov.lab.vo.Universitate;
+
 
 public class UnivDAO implements GenericDAO<Universitate>, Serializable {
 

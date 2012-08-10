@@ -8,8 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import defPack.ConnectionFactory;
-import defPack.Profesor;
+import md.victordov.lab.connection.ConnectionFactory;
+import md.victordov.lab.vo.Profesor;
+
 
 public class ProfesorDAO implements Serializable, GenericDAO<Profesor> {
 

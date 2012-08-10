@@ -1,4 +1,4 @@
-package defPack;
+package md.victordov.lab.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

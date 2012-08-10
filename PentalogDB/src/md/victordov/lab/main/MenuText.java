@@ -1,13 +1,13 @@
-package defPack;
+package md.victordov.lab.main;
 
 public interface MenuText {
-	static String InID = "Introdu ID-ul: ";
-	static String InNume = "Introdu Numele: ";
-	static String InPrenume = "Introdu Prenumele: ";
-	static String InGrupa = "Grupa:";
-	static String InEmail = "Email: ";
-	static String InTelefon = "Telefon: ";
-	static String InAdresa = "Adresa: ";
+	static String inID = "Introdu ID-ul: ";
+	static String inNume = "Introdu Numele: ";
+	static String inPrenume = "Introdu Prenumele: ";
+	static String inGrupa = "Grupa:";
+	static String inEmail = "Email: ";
+	static String inTelefon = "Telefon: ";
+	static String inAdresa = "Adresa: ";
 	// Afisare mesajului de succes in cazaul - crearii,reinnoirii sau stergerii
 	// unei date din tabel.
 	static String outSuccess = "Succes";

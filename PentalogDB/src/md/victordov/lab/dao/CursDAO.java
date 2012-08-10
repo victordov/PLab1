@@ -8,8 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import defPack.ConnectionFactory;
-import defPack.Curs;
+import md.victordov.lab.connection.ConnectionFactory;
+import md.victordov.lab.vo.Curs;
+
 
 public class CursDAO implements Serializable, GenericDAO<Curs> {
 
