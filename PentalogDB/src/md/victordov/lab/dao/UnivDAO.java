@@ -43,8 +43,8 @@ public class UnivDAO implements GenericDAO<Universitate>, Serializable {
 			resultSet = ptmt.executeQuery();
 			while (resultSet.next()) {
 				Universitate tempUniv = new Universitate();
-				tempUniv.setU_id(resultSet.getLong("u_id"));
-				tempUniv.setNume_univer(resultSet.getString("nume_univer"));
+				tempUniv.setUniversitateId(resultSet.getLong("u_id"));
+				tempUniv.setNumeUniversitate(resultSet.getString("nume_univer"));
 				tempUniv.setAdresa(resultSet.getString("adresa"));
 				tempUniv.setTelefon(resultSet.getString("telefon"));
 				colUniv.add(tempUniv);
@@ -86,8 +86,8 @@ public class UnivDAO implements GenericDAO<Universitate>, Serializable {
 			resultSet = ptmt.executeQuery();
 			resultSet.beforeFirst();
 			if (resultSet.next()) {
-				tempUniv.setU_id(resultSet.getLong("u_id"));
-				tempUniv.setNume_univer(resultSet.getString("nume_univer"));
+				tempUniv.setUniversitateId(resultSet.getLong("u_id"));
+				tempUniv.setNumeUniversitate(resultSet.getString("nume_univer"));
 				tempUniv.setAdresa(resultSet.getString("adresa"));
 				tempUniv.setTelefon(resultSet.getString("telefon"));
 			}
@@ -122,8 +122,8 @@ public class UnivDAO implements GenericDAO<Universitate>, Serializable {
 			String queryString = "INSERT INTO universitate(u_id, nume_univer, adresa, telefon) VALUES(?,?,?,?)";
 			connection = getConnection();
 			ptmt = connection.prepareStatement(queryString);
-			ptmt.setLong(1, t.getU_id());
-			ptmt.setString(2, t.getNume_univer());
+			ptmt.setLong(1, t.getUniversitateId());
+			ptmt.setString(2, t.getNumeUniversitate());
 			ptmt.setString(3, t.getAdresa());
 			ptmt.setString(4, t.getTelefon());
 			ptmt.executeUpdate();
@@ -158,10 +158,10 @@ public class UnivDAO implements GenericDAO<Universitate>, Serializable {
 			String queryString = "UPDATE universitate SET nume_univer=?,adresa=?,telefon=? WHERE u_id=?";
 			connection = getConnection();
 			ptmt = connection.prepareStatement(queryString);
-			ptmt.setString(1, t.getNume_univer());
+			ptmt.setString(1, t.getNumeUniversitate());
 			ptmt.setString(2, t.getAdresa());
 			ptmt.setString(3, t.getTelefon());
-			ptmt.setLong(4, t.getU_id());
+			ptmt.setLong(4, t.getUniversitateId());
 			ptmt.executeUpdate();
 			System.out.println("Table Updated Successfully");
 			state = true;

@@ -44,10 +44,10 @@ public class CursDAO implements Serializable, GenericDAO<Curs> {
 			resultSet = ptmt.executeQuery();
 			while (resultSet.next()) {
 				Curs tempCurs = new Curs();
-				tempCurs.setC_id(resultSet.getLong("c_id"));
-				tempCurs.setNume_curs(resultSet.getString("nume_curs"));
-				tempCurs.setU_id(resultSet.getLong("u_id"));
-				tempCurs.setP_id(resultSet.getLong("p_id"));
+				tempCurs.setCursId(resultSet.getLong("c_id"));
+				tempCurs.setNumeCurs(resultSet.getString("nume_curs"));
+				tempCurs.setUniversitateId(resultSet.getLong("u_id"));
+				tempCurs.setProfesorId(resultSet.getLong("p_id"));
 
 				colCurs.add(tempCurs);
 
@@ -87,10 +87,10 @@ public class CursDAO implements Serializable, GenericDAO<Curs> {
 			resultSet.beforeFirst();
 			if (resultSet.next()) {
 
-				tempCurs.setC_id(resultSet.getLong("c_id"));
-				tempCurs.setNume_curs(resultSet.getString("nume_curs"));
-				tempCurs.setU_id(resultSet.getLong("u_id"));
-				tempCurs.setP_id(resultSet.getLong("p_id"));
+				tempCurs.setCursId(resultSet.getLong("c_id"));
+				tempCurs.setNumeCurs(resultSet.getString("nume_curs"));
+				tempCurs.setUniversitateId(resultSet.getLong("u_id"));
+				tempCurs.setProfesorId(resultSet.getLong("p_id"));
 			}
 
 		} catch (SQLException e) {
@@ -120,10 +120,10 @@ public class CursDAO implements Serializable, GenericDAO<Curs> {
 			String queryString = "INSERT INTO curs(c_id, nume_curs, u_id, p_id) VALUES(?,?,?,?)";
 			connection = getConnection();
 			ptmt = connection.prepareStatement(queryString);
-			ptmt.setLong(1, t.getC_id());
-			ptmt.setString(2, t.getNume_curs());
-			ptmt.setLong(3, t.getU_id());
-			ptmt.setLong(4, t.getP_id());
+			ptmt.setLong(1, t.getCursId());
+			ptmt.setString(2, t.getNumeCurs());
+			ptmt.setLong(3, t.getUniversitateId());
+			ptmt.setLong(4, t.getProfesorId());
 			ptmt.executeUpdate();
 			System.out.println("Curs nou a fost adaugat in tabel");
 			status = true;
@@ -186,10 +186,10 @@ public class CursDAO implements Serializable, GenericDAO<Curs> {
 			String queryString = "UPDATE curs SET nume_curs=?,u_id=?,p_id=? WHERE c_id=?";
 			connection = getConnection();
 			ptmt = connection.prepareStatement(queryString);
-			ptmt.setString(1, t.getNume_curs());
-			ptmt.setLong(2, t.getU_id());
-			ptmt.setLong(3, t.getP_id());
-			ptmt.setLong(4, t.getC_id());
+			ptmt.setString(1, t.getNumeCurs());
+			ptmt.setLong(2, t.getUniversitateId());
+			ptmt.setLong(3, t.getProfesorId());
+			ptmt.setLong(4, t.getCursId());
 			ptmt.executeUpdate();
 			System.out.println("Tabelul a fost reinnoit");
 			succes = true;

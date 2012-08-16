@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import md.victordov.lab.connection.ConnectionFactory;
 import md.victordov.lab.vo.Student;
 
-
 public class StudentDAO implements Serializable, GenericDAO<Student> {
 
 	/**
@@ -44,7 +43,7 @@ public class StudentDAO implements Serializable, GenericDAO<Student> {
 			while (resultSet.next()) {
 				Student tempStud = new Student();
 
-				tempStud.setS_id(resultSet.getLong("s_id"));
+				tempStud.setStudentId(resultSet.getLong("s_id"));
 				tempStud.setNume(resultSet.getString("nume"));
 				tempStud.setPrenume(resultSet.getString("prenume"));
 				tempStud.setGrupa(resultSet.getString("grupa"));
@@ -88,13 +87,15 @@ public class StudentDAO implements Serializable, GenericDAO<Student> {
 			resultSet = ptmt.executeQuery();
 			resultSet.beforeFirst();
 			if (resultSet.next()) {
-				tempStud.setS_id(resultSet.getLong("s_id"));
+				tempStud.setStudentId(resultSet.getLong("s_id"));
 				tempStud.setNume(resultSet.getString("nume"));
 				tempStud.setPrenume(resultSet.getString("prenume"));
 				tempStud.setGrupa(resultSet.getString("grupa"));
 				tempStud.setEmail(resultSet.getString("email"));
 				tempStud.setTelFix(resultSet.getString("telFix"));
 
+			} else {
+				System.out.println("Nu exista student cu asa ID");
 			}
 
 		} catch (SQLException e) {
@@ -126,7 +127,7 @@ public class StudentDAO implements Serializable, GenericDAO<Student> {
 			String queryString = "INSERT INTO student(s_id, nume, prenume,grupa, email, telFix) VALUES(?,?,?,?,?,?)";
 			connection = getConnection();
 			ptmt = connection.prepareStatement(queryString);
-			ptmt.setLong(1, t.getS_id());
+			ptmt.setLong(1, t.getStudentId());
 			ptmt.setString(2, t.getNume());
 			ptmt.setString(3, t.getPrenume());
 			ptmt.setString(4, t.getGrupa());
@@ -173,7 +174,7 @@ public class StudentDAO implements Serializable, GenericDAO<Student> {
 			ptmt.setString(3, t.getGrupa());
 			ptmt.setString(4, t.getEmail());
 			ptmt.setString(5, t.getTelFix());
-			ptmt.setLong(6, t.getS_id());
+			ptmt.setLong(6, t.getStudentId());
 			ptmt.executeUpdate();
 			System.out.println("Table Updated Successfully");
 			succes = true;

@@ -1,55 +1,63 @@
 package md.victordov.lab.vo;
 
 public class Curs {
-	private long c_id;
-	private String nume_curs;
-	private long u_id;
-	private long p_id;
+	
+	private long cursId;
+	private String numeCurs;
+	private long universitateId;
+	private long profesorId;
 
 	public Curs() {
-		this.setC_id(0);
-		this.setNume_curs("");
-		this.setU_id(0);
-		this.setP_id(0);
+		this.setCursId(0);
+		this.setNumeCurs("");
+		this.setUniversitateId(0);
+		this.setProfesorId(0);
 	}
 
 	Curs(long ID, String Num_Curs, long U_ID, long P_ID) {
-		this.setC_id(ID);
-		this.setNume_curs(Num_Curs);
-		this.setU_id(U_ID);
-		this.setP_id(P_ID);
+		this.setCursId(ID);
+		this.setNumeCurs(Num_Curs);
+		this.setUniversitateId(U_ID);
+		this.setProfesorId(P_ID);
 	}
 
 
-	public long getC_id() {
-		return c_id;
+	public long getCursId() {
+		return cursId;
 	}
 
-	public void setC_id(long c_id) {
-		this.c_id = c_id;
+	public void setCursId(long c_id) {
+		this.cursId = c_id;
 	}
 
-	public String getNume_curs() {
-		return nume_curs;
+	public String getNumeCurs() {
+		return numeCurs;
 	}
 
-	public void setNume_curs(String nume_curs) {
-		this.nume_curs = nume_curs;
+	public void setNumeCurs(String nume_curs) {
+		this.numeCurs = nume_curs;
 	}
 
-	public long getU_id() {
-		return u_id;
+	public long getUniversitateId() {
+		return universitateId;
 	}
 
-	public void setU_id(long u_id) {
-		this.u_id = u_id;
+	public void setUniversitateId(long u_id) {
+		this.universitateId = u_id;
 	}
 
-	public long getP_id() {
-		return p_id;
+	public long getProfesorId() {
+		return profesorId;
 	}
 
-	public void setP_id(long p_id) {
-		this.p_id = p_id;
+	public void setProfesorId(long p_id) {
+		this.profesorId = p_id;
+	}
+	
+	public void printCurs(){
+	    String format = "|%1$-10d|%2$-20s|%3$-15d|%4$-12d|\n";
+	    System.out.printf("|%-10d|%-20.20s|%-15d|%-12d|\n", 
+		    		this.getCursId(),this.getNumeCurs(),
+		    		this.getUniversitateId(),this.getProfesorId());
 	}
 }
