@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import md.victordov.lab.common.exception.MyDaoException;
 import md.victordov.lab.connection.ConnectionFactory;
 import md.victordov.lab.vo.Profesor;
 
@@ -29,7 +30,7 @@ public class ProfesorDAO implements Serializable, GenericDAO<Profesor> {
     }
 
     @Override
-    public Collection<Profesor> retrieve() {
+    public Collection<Profesor> retrieve() throws MyDaoException {
 	Collection<Profesor> colProf = new ArrayList<Profesor>();
 	try {
 	    String queryString = "SELECT * FROM profesor";
@@ -49,6 +50,7 @@ public class ProfesorDAO implements Serializable, GenericDAO<Profesor> {
 	    }
 	} catch (SQLException e) {
 	    e.printStackTrace();
+	    throw new MyDaoException("numar.mare",e);
 	} finally {
 	    try {
 		if (resultSet != null)

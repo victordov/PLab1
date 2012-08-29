@@ -187,13 +187,10 @@ public class StudentDAO implements Serializable, GenericDAO<Student> {
 					ptmt.close();
 				if (connection != null)
 					connection.close();
-			}
-
-			catch (SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
-
 			}
 		}
 		return succes;
